@@ -25,7 +25,7 @@ class Node:
             raise TypeError("data must be an integer")
         self.__data = value
 
-    @properties
+    @property
     def next_node(self):
         """Get/set.... the next_node of the Node."""
         return (self.__next_node)
