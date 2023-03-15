@@ -5,8 +5,8 @@
 class Square:
     """Private instance attribute
         Instantiation with optional size
-            no import modules
-            size must be an integer..."""
+        no import modules
+        Public instance method: def area(self): that returns the current square area"""
 
     def __init__(self, size=0):
         if type(size) is not int:
