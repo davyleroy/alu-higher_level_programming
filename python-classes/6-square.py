@@ -5,9 +5,9 @@
 class Square:
     """Private instance attribute: size
     Private instance attribute: position
-    Instantiation with optional size and optional position: def __init__(self, size=0, position=(0, 0))
-    Public instance method: def area(self): that returns the current square area
-    Public instance method: def my_print(self): that prints in stdout the square with the character #:
+    Instantiation with optional size and optional position:
+    Public instance method: def area(self): that returns the square area
+    Public instance method: def my_print(self): that prints the square with  #:
         no import modules"""
 
     def __init__(self, size=0, position=(0, 0)):
