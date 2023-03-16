@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """Write a class Rectangle that defines a rectangle by:"""
 class Rectangle:
+   """Private instance attribute: width
+   Private instance attribute: height
+   Public class attribute number_of_instances
+   Public class attribute print_symbol"""
     number_of_instances = 0
     print_symbol = "#"
 
