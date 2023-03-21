@@ -16,3 +16,7 @@ class Square(Rectangle):
     def area(self):
         """ Calling parent method area() """
         return (super().area())
+
+    def __str__(self):
+        """ Calling parent method str() """
+        return "[Square] " + str(self.__size) + "/" + str(self.__size)
