@@ -1,4 +1,4 @@
-HIGHER LEVEL PROGRAMMING - HOLBERTON SCHOOL 🤖
+HIGHER LEVEL PROGRAMMING - AFRICAN LEADERSHIP UNIVERSITY 🤖
 Description 💬
 Higher-level programming projects for AlU Software engeering  Year 1
 
@@ -23,5 +23,3 @@ davyleroy Github LinkdIn
 
 Acknowledgements 🙏
 Thanks to all the software engineers, colleagues from different cohorts an intakes of the African Leadership University, for all the learning we have been able to acquire in this period of high-level programming.
-
-For more information about ALU, visit this link.
