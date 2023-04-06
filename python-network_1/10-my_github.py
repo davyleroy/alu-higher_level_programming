@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """
 A Python script that takes GitHub credentials
