@@ -127,7 +127,6 @@ class TestRectangle(unittest.TestCase):
             Rectangle(5, 6, 5, "test")
             raise TypeError()
 
-        OB
         with self.assertRaises(TypeError):
             Rectangle(5, 7, 7, False)
             raise TypeError()

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3OA
 """
 A module that test differents behaviors
 of the Square class
@@ -69,7 +69,7 @@ class TestSquare(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             r1.size = ''
-
+AOA
     def test_none(self):
         r1 = Square(5)
 
