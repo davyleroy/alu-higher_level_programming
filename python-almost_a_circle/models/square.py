@@ -1,54 +1,64 @@
 #!/usr/bin/python3
-""" Program that defines a Square in base from Rectangle """
-from . rectangle import Rectangle
+"""Define Rectangle Class
+"""
+
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """ class Square that inherits from Rectangle """
+    """ Representation of Square
+"""
+
     def __init__(self, size, x=0, y=0, id=None):
-        """ Constructor """
+        """Initialization of a Square
+        """
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """ Retriebe the size of square """
-        return (self.width)
+        """ Square size getter
+        """
+        return self.width
 
     @size.setter
     def size(self, value):
-        """ set passet private attribute of size """
+        """Square size setter
+        """
         self.width = value
         self.height = value
 
     def __str__(self):
-        """ overriding the __str__ method that returns a custom string """
-        mssg = "[Square] ({:d}) {:d}/{:d} - {:d}"\
-            .format(self.id, self.x, self.y, self.width)
-        return (mssg)
+        """ string represation of square
+        """
+        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(self.id,
+                                                         self.x,
+                                                         self.y,
+                                                         self.width)
 
     def update(self, *args, **kwargs):
-        """ Method that assigns an argument to each attribute
-        by Non-keyword and key/value"""
-        arlist = ["id", "size", "x", "y"]
-        if (args and len(args) != 0):
-            for arl in range(len(args)):
-                if (arl == 0):
-                    super().update(args[arl])
-                elif (arl < len(arlist)):
-                    setattr(self, arlist[arl], args[arl])
+        """update square
+        """
+        if len(args):
+            for i, arg in enumerate(args):
+                if i == 0:
+                    self.id = arg
+                elif i == 1:
+                    self.size = arg
+                elif i == 2:
+                    self.x = arg
+                elif i == 3:
+                    self.y = arg
         else:
             for key, value in kwargs.items():
-                if (key == 'id'):
-                    super().update(value)
-                else:
+                if hasattr(self, key) is True:
                     setattr(self, key, value)
 
     def to_dictionary(self):
-        """ returns the dictionary representation of a Square """
-        my_dict = {
-            'id': self.id,
-            'size': self.size,
-            'x': self.x,
-            'y': self.y
+        """return dictonary
+        """
+        return {
+            "id": self.id,
+            "size": self.size,
+            "x": self.x,
+            "y": self.y
         }
-        return (my_dict)
