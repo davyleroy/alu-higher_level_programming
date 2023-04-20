@@ -1,113 +1,264 @@
-#!/usr/bin/python3OA
 """
-A module that test differents behaviors
-of the Square class
+    unit test for square.py
 """
+
 import unittest
-import pep8
-from models.base import Base
-from models.rectangle import Rectangle
+import json
 from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
     """
-    A class to test the Square Class
+        Tests square
     """
-    def test_pep8_base(self):
+    def setUp(self):
         """
-        Test that checks PEP8
+            Initialize square instance
+            With size only
         """
-        syntax = pep8.StyleGuide(quit=True)
-        check = syntax.check_files(['models/square.py'])
-        self.assertEqual(
-            check.total_errors, 0,
-            "Found code style errors (and warnings)."
-        )
+        self.sq = Square(20)
 
-    def test_getter(self):
-        r1 = Square(5)
-        self.assertEqual(r1.size, 5)
+    def tearDown(self):
+        """
+            Deletes new instance
+        """
+        del self.sq
 
-    def test_setter(self):
-        r1 = Square(5)
-        r1.size = 8
-        self.assertEqual(r1.size, 8)
+    def test_size(self):
+        """
+            Tests square size getter
+        """
+        self.assertEqual(20, self.sq.width)
 
-    def test_string(self):
-        r1 = Square(3)
+    def test_x(self):
+        """
+            Tests the x getter
+        """
+        self.sq.x = 2
+        self.assertEqual(2, self.sq.x)
+        self.assertEqual(0, self.sq.y)
 
+    def test_y(self):
+        """
+            Tests the y getter
+        """
+        self.sq.y = 2
+        self.assertEqual(2, self.sq.y)
+        self.assertEqual(0, self.sq.x)
+
+    def test_square_id(self):
+        """
+            Tests the id of the square
+        """
+        sq1 = Square(1, 0, 0, 12)
+        self.assertEqual(12, sq1.id)
+
+    def test_size_str(self):
+        """
+            Tests wrong type for size: str
+        """
         with self.assertRaises(TypeError):
-            r1.size = "Hi"
+            sq1 = Square("s")
 
-    def test_negative(self):
-        r1 = Square(6)
+    def test_size_list(self):
+        """
+            Tests wrong type for size: list
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square([12, 43])
 
+    def test_size_bool(self):
+        """
+            Tests wrong type for size: boolean
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square(True)
+
+    def test_x_str(self):
+        """
+            Tests wrong type for x: str
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square(72, "x", 0)
+
+    def test_x_list(self):
+        """
+            Tests wrong type for x: list
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square(26, [13, 22], 83)
+
+    def test_x_bool(self):
+        """
+            Tests wrong type for x: boolean
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square(24, True, 97)
+
+    def test_y_str(self):
+        """
+            Tests wrong type for y: str
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square(26, 30, "y")
+
+    def test_y_list(self):
+        """
+            Tests wrong type for y: list
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square(21, 26, [41, 92])
+
+    def test_y_bool(self):
+        """
+            Tests wrong type for y: boolean
+        """
+        with self.assertRaises(TypeError):
+            sq1 = Square(2, 9, True)
+
+    def test_size_negative(self):
+        """
+            Tests negative value for size
+        """
         with self.assertRaises(ValueError):
-            r1.size = -5
+            sq1 = Square(-2)
 
-    def test_zero(self):
-        r1 = Square(6)
-
+    def test_size_zero(self):
+        """
+            Tests zero value for size
+        """
         with self.assertRaises(ValueError):
-            r1.size = 0
+            sq1 = Square(0)
 
-    def test_decimal(self):
-        r1 = Square(6)
+    def test_x_negative(self):
+        """
+            Tests negative value for x
+        """
+        with self.assertRaises(ValueError):
+            sq1 = Square(2, -1, 0)
 
+    def test_y_negative(self):
+        """
+            Tests negative value for y
+        """
+        with self.assertRaises(ValueError):
+            sq1 = Square(34, 42, -4)
+
+    def test_area(self):
+        """
+            Tests for area()
+        """
+        sq1 = Square(20)
+        self.assertEqual(sq1.area(), 20 * 20)
+
+    def test_str_overload(self):
+        """
+            Tests the str overload
+        """
+        sq = Square(10, 2, 3, 9)
+        self.assertEqual(sq.__str__(), "[Square] (9) 2/3 - 10")
+
+    def test_update(self):
+        """
+            Test update function with *args
+        """
+        sq1 = Square(1)
+        sq1.update(2, 4)
+        self.assertEqual(sq1.__str__(), "[Square] (2) 0/0 - 4")
+
+    def test_update_kwargs(self):
+        """
+            Test update() function with **kwargs
+        """
+        sq1 = Square(1)
+        sq1.update(size=7, y=1, id=12)
+        self.assertEqual(sq1.__str__(), "[Square] (12) 0/1 - 7")
+
+    def test_update_both(self):
+        """
+            Test update() with both args and kwargs
+        """
+        sq1 = Square(1)
+        sq1.update(2, 4, **{'x': 3, 'y': 4})
+        self.assertEqual(sq1.__str__(), "[Square] (2) 0/0 - 4")
+
+    def test_create_dict_equal(self):
+        """
+            Tests creating square is not equal
+        """
+        sq1 = Square(1, 3, 5, 6)
+        sq1_dict = sq1.to_dictionary()
+        sq2 = Square.create(**sq1_dict)
+        self.assertNotEqual(sq1, sq2)
+
+    def test_create_dict_is(self):
+        """
+            Tests create squaree is (sq1 is sq2)
+        """
+        sq1 = Square(1, 3, 5, 6)
+        sq1_dict = sq1.to_dictionary()
+        sq2 = Square.create(**sq1_dict)
+        self.assertIsNot(sq1, sq2)
+
+    def test_save_to_file_none(self):
+        """
+            Tests save to file none
+        """
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            content = json.load(f)
+            self.assertEqual(content, [])
+
+    def test_save_to_file_empty(self):
+        """
+            Tests save to file empty list
+        """
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            content = json.load(f)
+            self.assertEqual(content, [])
+
+    def test_save_to_file_rect(self):
+        """
+            Tests save to file with proper input
+        """
+        Square.save_to_file([Square(1, 3, 4, 5)])
+        with open("Square.json", "r") as f:
+            content = f.read()
+            self.assertEqual(json.loads(content), [{"id": 5,
+                                                    "size": 1,
+                                                    "x": 3, "y": 4}])
+
+    def test_save_to_file_noargs(self):
+        """
+            Tests save to file with no arguments
+        """
         with self.assertRaises(TypeError):
-            r1.size = 1.5
+            Square.save_to_file()
 
-    def test_tuple(self):
-        r1 = Square(7)
+    def test_save_to_file_type(self):
+        """
+            Tests save to file , format saved in
+        """
+        Square.save_to_file([Square(1, 3, 4, 5)])
+        with open("Square.json", "r") as f:
+            content = f.read()
+            self.assertEqual(str, type(content))
 
-        with self.assertRaises(TypeError):
-            r1.size = (2, 8)
+    def test_load_from_file_noexist(self):
+        """
+            Tests load from file that doesnt exist
+        """
+        sq1 = Square(1)
+        Square.save_to_file([sq1])
+        list_output = Square.load_from_file()
+        self.assertEqual(sq1.width, list_output[0].size)
 
-    def test_empty(self):
-        r1 = Square(7)
+    def test_stf_None(self):
+        """
+            Test save_to_file with None
+        """
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual("[]", f.read())
 
-        with self.assertRaises(TypeError):
-            r1.size = ''
-AOA
-    def test_none(self):
-        r1 = Square(5)
-
-        with self.assertRaises(TypeError):
-            r1.size = None
-
-    def test_list(self):
-        r1 = Square(4)
-
-        with self.assertRaises(TypeError):
-            r1.size = [4, 7]
-
-    def test_dict(self):
-        r1 = Square(5)
-
-        with self.assertRaises(TypeError):
-            r1.size = {"hi": 5, "world": 8}
-
-    def test_width(self):
-        r1 = Square(5)
-        r1.size = 6
-        self.assertEqual(r1.width, 6)
-        self.assertEqual(r1.height, 6)
-
-    def test_to_dictionary(self):
-        Base._Base__nb_objects = 0
-
-        s1 = Square(10, 2, 1, 9)
-        s1_dictionary = s1.to_dictionary()
-        expected = {'id': 9, 'x': 2, 'size': 10, 'y': 1}
-        self.assertEqual(s1_dictionary, expected)
-
-        s1 = Square(1, 0, 0, 9)
-        s1_dictionary = s1.to_dictionary()
-        expected = {'id': 9, 'x': 0, 'size': 1, 'y': 0}
-        self.assertEqual(s1_dictionary, expected)
-
-        s1.update(5, 5, 5, 5)
-        s1_dictionary = s1.to_dictionary()
-        expected = {'id': 5, 'x': 5, 'size': 5, 'y': 5}
-        self.assertEqual(s1_dictionary, expected)
