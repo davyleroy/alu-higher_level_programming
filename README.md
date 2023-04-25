@@ -40,6 +40,6 @@ using project-based peer learning. For more information, visit
 
 <p align="center">
   <img src="http://www.alu.com/alu-logo.png"
-       alt="Holberton School logo"
+       alt="ALU logo"
   >
 </p>
