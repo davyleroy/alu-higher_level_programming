@@ -33,9 +33,9 @@ scripting. The specific list of projects contained follows:
 ## Acknowledgements :pray:
 
 All work contained in this project was completed as part of the curriculum for
-African Leadership Univrsity. Holberton School is a campus-based full-stack software
+African Leadership Univrsity students. ALU Software enginering degree program is a hybrid-based full-stack software
 engineering program that prepares students for careers in the tech industry
-using project-based peer learning. For more information, visit
+using project-based peer learning sloving Problems but most Importantly '#dohardthings' . For more information, visit
 [this link](https://www.holbertonschool.com/).
 
 <p align="center">
