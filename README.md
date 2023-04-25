@@ -1,4 +1,4 @@
-# Higher-level programming - Python, Databases & JavaScript
+# Higher-level programming - Python & Databases
 
 This repository contains programs written for the higher-level programming
 track at African Leadership Univrsity. In these projects, which began occurring in month
