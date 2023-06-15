@@ -1,27 +1,24 @@
 #!/usr/bin/node
+// A script that prints the number of movies where the character Wedge Antilles is present
 
-const request = require('request-promise');
-
-// Function to check if Wedge Antilles is present in a movie
-function isWedgeAntillesPresent(movie) {
-  const wedgeAntillesId = '18';
-  return movie.characters.some(characterUrl => characterUrl.includes(wedgeAntillesId));
-}
-
-(async () => {
-  try {
-    // Check if the API URL is provided as an argument
-    if (process.argv.length > 2) {
-      const apiUrl = process.argv[2];
-  
-      const response = await request.get(apiUrl);
-      const movies = JSON.parse(response).results;
-      const moviesWithWedgeAntilles = movies.filter(isWedgeAntillesPresent);
-      console.log(moviesWithWedgeAntilles.length);
-    } else {
-      console.log('Please provide the API URL as an argument.');
+const url = process.argv[2];
+const request = require('request');
+request(url, function (error, response, body) {
+  if (error) {
+    console.log('error:', error);
+  } else {
+    const json = JSON.parse(body);
+    const results = json.results;
+    let count = 0;
+    for (let i = 0; i < results.length; i++) {
+      const chars = (results[i].characters);
+      for (let j = 0; j < chars.length; j++) {
+        const check = chars[j].endsWith('18/');
+        if (check) {
+          count++;
+        }
+      }
     }
-  } catch (error) {
-    console.error('An error occurred while making the request:', error);
+    console.log(count);
   }
-})();
+});
