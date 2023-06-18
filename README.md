@@ -24,7 +24,10 @@ scripting. The specific list of projects contained follows:
 * [. Python - Object-relational mapping](./python-object_relational_mapping)
 * [. Python - Network #0](./python-network_0)
 * [. Python - Network #1](./python-network_1)
-* [. ](./python-network_1)
+* [. javascript - Warm up ](./javascript-warm_up)
+* [. javascript - Objects scopes closures](./javascript_objects_scopes_closures)
+* [. javascript - Web scraping](./javascript-web_scraping)
+* [. javascript - Web Jquery](./javascript-web_jquery)
 
 ## Author :black_nib:
 
