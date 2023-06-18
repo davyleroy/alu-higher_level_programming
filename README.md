@@ -2,7 +2,7 @@
 
 This repository contains programs written for the higher-level programming
 track at African Leadership Univrsity. In these projects, which began occurring in month
-four of the year one curriculum, I learned Python, and MySQL.
+four of the year one curriculum, I learned Python, Javascript and MySQL.
 Simultaneously, I continued to reinforce and expand my skills in C and shell
 scripting. The specific list of projects contained follows:
 
@@ -24,7 +24,7 @@ scripting. The specific list of projects contained follows:
 * [. Python - Object-relational mapping](./python-object_relational_mapping)
 * [. Python - Network #0](./python-network_0)
 * [. Python - Network #1](./python-network_1)
-
+* [. ](./python-network_1)
 
 ## Author :black_nib:
 
@@ -35,7 +35,9 @@ scripting. The specific list of projects contained follows:
 All work contained in this project was completed as part of the curriculum for
 African Leadership Univrsity students. ALU Software enginering degree program is a hybrid-based full-stack software
 engineering program that prepares students for careers in the tech industry
-using project-based peer learning sloving Problems but most Importantly `#dohardthings` . For more information, visit
+using project-based peer learning sloving Problems but most Importantly `#dohardthings` .
+`Remember: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand." - Martin Fowler'`
+For more information, visit
 [this link](https://www.holbertonschool.com/).
 
 <p align="center">
